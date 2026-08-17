@@ -12,7 +12,6 @@ Open `index.html` in any text editor and search for the section you want to chan
 
 Still-placeholder items to fill in:
 - Founding year, years in practice, client count, CPA license number (hero panel)
-- Full service descriptions (currently generic one-liners)
 - Second partner's bio and both partners' photos
 - Address, phone, email, and business hours (footer contact section) — once real, update both the visible text **and** the `tel:`/`mailto:` link targets in the same rows
 - Copyright year in the footer

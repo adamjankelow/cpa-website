@@ -14,9 +14,9 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מארק דויב ושות׳ | רואי חשבון</title>
-<meta name="description" content="מארק דויב ושות׳ — משרד רואי חשבון ברמת גן. הנהלת חשבונות, מיסוי עסקי, עוסק מורשה ופטור, וטיפול בהחזרי מס לעולים חדשים.">
+<meta name="description" content="מארק דויב ושות׳ — משרד רואי חשבון ברמת גן. עוסק פטור, עוסק מורשה, חברה בע״מ, הכנסות משכירות וטיפול בהחזרי מס לעולים חדשים.">
 <meta property="og:title" content="מארק דויב ושות׳ | רואי חשבון">
-<meta property="og:description" content="רואי חשבון מוסמכים ברמת גן — הנהלת חשבונות, מיסוי עסקי וליווי עולים חדשים.">
+<meta property="og:description" content="רואי חשבון מוסמכים ברמת גן — עוסק פטור, עוסק מורשה, חברה בע״מ והכנסות משכירות.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta name="theme-color" content="#14213D">
@@ -177,6 +177,29 @@
   .hero-stat:last-child{ border-bottom:none; }
   .hero-stat b{ font-weight:700; }
 
+  /* ---------- facts banner ---------- */
+  .facts-strip{
+    background:var(--paper-2);
+    border-top:1px solid var(--line);
+  }
+  .facts-inner{
+    max-width:1160px; margin:0 auto; padding:56px 28px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  @media (max-width:860px){ .facts-inner{ grid-template-columns:repeat(2,1fr); padding:40px 22px; gap:28px 12px; } }
+  @media (max-width:480px){ .facts-inner{ grid-template-columns:1fr; padding:36px 22px; } }
+  .fact{ text-align:center; padding:8px 12px; }
+  .fact-icon{
+    width:42px; height:42px; color:var(--brass); margin:0 auto 16px;
+  }
+  .fact-icon svg{ width:100%; height:100%; display:block; }
+  .fact-value{
+    font-family:'Frank Ruhl Libre',serif; font-size:clamp(26px,2.8vw,34px);
+    font-weight:700; line-height:1.15; margin:0 0 8px; color:var(--ink);
+  }
+  html[dir="ltr"] .fact-value{ font-family:'Source Serif 4',serif; }
+  .fact-label{ font-size:13.5px; color:var(--slate); line-height:1.45; }
+
   /* ---------- section shell ---------- */
   section{ max-width:1160px; margin:0 auto; padding:80px 28px; border-top:1px solid var(--line); }
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:48px; flex-wrap:wrap; }
@@ -185,13 +208,30 @@
   .section-desc{ max-width:52ch; color:var(--slate); font-size:15.5px; line-height:1.6; }
 
   /* ---------- services ---------- */
-  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
-  @media (max-width:760px){ .services-grid{ grid-template-columns:1fr; } }
-  .service-card{ background:var(--paper); padding:32px 28px; }
-  .service-tag{ font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--brass); margin-bottom:14px; font-weight:600; }
-  .service-title{ font-family:'Frank Ruhl Libre',serif; font-size:21px; font-weight:700; margin-bottom:12px; }
+  .services-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:980px){ .services-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .services-grid{ grid-template-columns:1fr; } }
+  .service-card{ background:var(--paper); padding:32px 24px; }
+  .service-icon{
+    width:44px; height:44px; color:var(--brass); margin-bottom:18px;
+  }
+  .service-icon svg{ width:100%; height:100%; display:block; }
+  .service-tag{ font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--brass); margin-bottom:10px; font-weight:600; }
+  .service-title{ font-family:'Frank Ruhl Libre',serif; font-size:21px; font-weight:700; margin-bottom:16px; }
   html[dir="ltr"] .service-title{ font-family:'Source Serif 4',serif; }
   .service-desc{ font-size:14.5px; line-height:1.65; color:var(--slate); }
+  .service-list{
+    list-style:none; margin:0; padding:0;
+    font-size:14.5px; line-height:1.55; color:var(--slate);
+  }
+  .service-list li{
+    position:relative; padding-inline-start:14px; margin-bottom:9px;
+  }
+  .service-list li:last-child{ margin-bottom:0; }
+  .service-list li::before{
+    content:""; position:absolute; inset-inline-start:0; top:0.62em;
+    width:5px; height:5px; border-radius:50%; background:var(--brass);
+  }
 
   /* ---------- team ---------- */
   .team-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:36px; }
@@ -282,12 +322,12 @@
 
 <div class="hero ledger-bg">
   <div>
-    <div class="eyebrow" data-he>רואי חשבון מוסמכים · מאז — [שנת ייסוד]</div>
-    <div class="eyebrow" data-en>Certified Public Accountants · Est. [Founding Year]</div>
-    <h1 class="display heb" data-he>רואי חשבון לעסקים, עצמאים ומשפחות ברמת גן.</h1>
-    <h1 class="display heb" data-en>Accountants for businesses, the self-employed, and families in Ramat Gan.</h1>
-    <p class="hero-lede" data-he>משרד מארק דויב ושות׳ מלווה עסקים, עצמאים ומשפחות ברמת גן ובמרכז הארץ בכל הנוגע למיסוי, דיווחים והתנהלות מול רשויות המס — בליווי אישי ובאמינות מלאה.</p>
-    <p class="hero-lede" data-en>Marc Douieb &amp; Co. advises businesses, self-employed professionals, and families across Ramat Gan and central Israel on tax, reporting, and dealings with the Tax Authority — with personal attention and full transparency.</p>
+    <div class="eyebrow" data-he>שירותי ראיית חשבון מקצועיים</div>
+    <div class="eyebrow" data-en>Professional accounting services</div>
+    <h1 class="display heb" data-he>מארק דויב ושות׳</h1>
+    <h1 class="display heb" data-en>Marc Douieb &amp; Co.</h1>
+    <p class="hero-lede" data-he>לעסקים, עצמאים ומשפחות — מיסוי, דיווחים והתנהלות מול רשויות המס, בליווי אישי ובאמינות מלאה.</p>
+    <p class="hero-lede" data-en>For businesses, the self-employed, and families — tax, reporting, and dealings with the Tax Authority, with personal attention and full transparency.</p>
     <div class="hero-cta">
       <a href="mailto:info@marcdouieb.co.il?subject=%D7%91%D7%A7%D7%A9%D7%AA%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" class="btn btn-primary" data-he>קביעת פגישה</a>
       <a href="mailto:info@marcdouieb.co.il?subject=Meeting%20request" class="btn btn-primary" data-en>Book a Consultation</a>
@@ -305,6 +345,70 @@
   </div>
 </div>
 
+<div class="facts-strip">
+  <div class="facts-inner">
+    <div class="fact">
+      <div class="fact-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 8h14l8 8v24H14z"/>
+          <path d="M28 8v8h8"/>
+          <path d="M20 24h12M20 30h12M20 36h7"/>
+        </svg>
+      </div>
+      <div class="fact-value heb">[YYYY]</div>
+      <div class="fact-label" data-he>שנת ייסוד</div>
+      <div class="fact-label" data-en>Year of foundation</div>
+    </div>
+    <div class="fact">
+      <div class="fact-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="14"/>
+          <path d="M10 24h28"/>
+          <path d="M24 10c4 5 6 9.5 6 14s-2 9-6 14c-4-5-6-9.5-6-14s2-9 6-14z"/>
+          <circle cx="33" cy="14" r="2.2" fill="currentColor" stroke="none"/>
+          <circle cx="16" cy="32" r="2.2" fill="currentColor" stroke="none"/>
+          <circle cx="34" cy="30" r="2.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="fact-value heb" data-he>3 שפות</div>
+      <div class="fact-value heb" data-en>3 Languages</div>
+      <div class="fact-label" data-he>עברית / אנגלית / צרפתית</div>
+      <div class="fact-label" data-en>Hebrew / English / French</div>
+    </div>
+    <div class="fact">
+      <div class="fact-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="4"/>
+          <circle cx="24" cy="14" r="4.5"/>
+          <circle cx="32" cy="16" r="4"/>
+          <path d="M8 36c.6-5.2 4.2-8.5 8.5-8.5 2.2 0 4.1.8 5.5 2.2"/>
+          <path d="M15 36c.7-5.6 4.6-9 9-9s8.3 3.4 9 9"/>
+          <path d="M26 29.7c1.4-1.4 3.3-2.2 5.5-2.2 4.3 0 7.9 3.3 8.5 8.5"/>
+        </svg>
+      </div>
+      <div class="fact-value heb">15</div>
+      <div class="fact-label" data-he>חברי צוות</div>
+      <div class="fact-label" data-en>Team members</div>
+    </div>
+    <div class="fact">
+      <div class="fact-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 40V22l8-6 8 6v18"/>
+          <path d="M16 40V28h8v12"/>
+          <path d="M24 26h12v14H24"/>
+          <path d="M28 18V10h8v8"/>
+          <path d="M8 40h32"/>
+          <path d="M12 26h2M12 31h2M28 30h4M28 35h4M31 13h2"/>
+        </svg>
+      </div>
+      <div class="fact-value heb" data-he>רמת גן</div>
+      <div class="fact-value heb" data-en>Ramat Gan</div>
+      <div class="fact-label" data-he>אבא הלל 7</div>
+      <div class="fact-label" data-en>Abba Hillel 7</div>
+    </div>
+  </div>
+</div>
+
 <section id="services">
   <div class="section-head">
     <div>
@@ -313,33 +417,91 @@
       <h2 class="display heb" data-he>ליווי מלא לכל סוגי העסק</h2>
       <h2 class="display heb" data-en>Full-service support for every business type</h2>
     </div>
-    <p class="section-desc" data-he>מהקמת התיק במע״מ ועד דוח שנתי — אנחנו שם בכל שלב.</p>
-    <p class="section-desc" data-en>From opening your file with the Tax Authority to your annual return — we're with you at every stage.</p>
+    <p class="section-desc" data-he>מעוסק פטור ועד חברה בע״מ, כולל הכנסות משכירות — אנחנו שם בכל שלב.</p>
+    <p class="section-desc" data-en>From Osek Patur to a limited company, including rental income — we’re with you at every stage.</p>
   </div>
   <div class="services-grid">
     <div class="service-card">
-      <div class="service-tag" data-he>חברות ועסקים</div>
-      <div class="service-tag" data-en>Companies &amp; Businesses</div>
-      <div class="service-title" data-he>הנהלת חשבונות ומיסוי עסקי</div>
-      <div class="service-title" data-en>Bookkeeping &amp; Business Tax</div>
-      <p class="service-desc" data-he>דוחות שנתיים, ניהול ספרים, מע״מ ומס הכנסה לחברות בע״מ ושותפויות. [טקסט מלא יתקבל מהמשרד]</p>
-      <p class="service-desc" data-en>Annual reports, bookkeeping, VAT and income tax for limited companies and partnerships. [Full copy to be supplied by the firm]</p>
-    </div>
-    <div class="service-card">
-      <div class="service-tag" data-he>עצמאים</div>
-      <div class="service-tag" data-en>Self-Employed</div>
-      <div class="service-title" data-he>עוסק מורשה</div>
-      <div class="service-title" data-en>Osek Murshe</div>
-      <p class="service-desc" data-he>פתיחת תיק, דיווחי מע״מ תקופתיים ודוח שנתי לעצמאים בעלי מחזור מעל הסף. [טקסט מלא יתקבל מהמשרד]</p>
-      <p class="service-desc" data-en>File setup, periodic VAT reporting, and annual filing for self-employed professionals above the turnover threshold. [Full copy to be supplied by the firm]</p>
-    </div>
-    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="13" y="8" width="22" height="32" rx="2"/>
+          <path d="M19 8h10v5H19z"/>
+          <path d="M19 22h12M19 28h12M19 34h8"/>
+        </svg>
+      </div>
       <div class="service-tag" data-he>עסקים קטנים</div>
       <div class="service-tag" data-en>Small Business</div>
       <div class="service-title" data-he>עוסק פטור</div>
       <div class="service-title" data-en>Osek Patur</div>
-      <p class="service-desc" data-he>ליווי בפתיחת תיק עוסק פטור והדרכה בהתנהלות השוטפת מול רשויות המס. [טקסט מלא יתקבל מהמשרד]</p>
-      <p class="service-desc" data-en>Support opening an exempt-dealer file and guidance on ongoing dealings with the Tax Authority. [Full copy to be supplied by the firm]</p>
+      <ul class="service-list">
+        <li><span data-he>רישום ברשויות</span><span data-en>Registration with the authorities</span></li>
+        <li><span data-he>פגישת הקמה ללא עלות נוספת</span><span data-en>Initial setup meeting at no extra cost</span></li>
+        <li><span data-he>התחלת חשבוניות תקינות</span><span data-en>Initiating correct invoicing</span></li>
+        <li><span data-he>דיווחים שנתיים</span><span data-en>Annual submissions</span></li>
+        <li><span data-he>ליווי לאורך השנה</span><span data-en>Guidance throughout the year</span></li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="14" width="20" height="26" rx="2"/>
+          <rect x="10" y="18" width="12" height="6" rx="1"/>
+          <path d="M11 30h3M16.5 30h3M11 35h3M16.5 35h3"/>
+          <circle cx="36" cy="16" r="5"/>
+          <path d="M28 34c.5-4.2 3.8-7.5 8-7.5s7.5 3.3 8 7.5"/>
+        </svg>
+      </div>
+      <div class="service-tag" data-he>חברות</div>
+      <div class="service-tag" data-en>Companies</div>
+      <div class="service-title" data-he>חברה בע״מ</div>
+      <div class="service-title" data-en>Chevra Ba’am (LLC)</div>
+      <ul class="service-list">
+        <li><span data-he>הקמת החברה ורישום משפטי</span><span data-en>Entity legal incorporation</span></li>
+        <li><span data-he>סיוע בפתיחת חשבון בנק</span><span data-en>Assistance with bank account opening</span></li>
+        <li><span data-he>הנהלת חשבונות כפולה</span><span data-en>Double-entry bookkeeping</span></li>
+        <li><span data-he>דיווחי מס חודשיים</span><span data-en>Monthly tax reporting</span></li>
+        <li><span data-he>שירותי שכר</span><span data-en>Payroll services</span></li>
+        <li><span data-he>ביקורת והכנת דוח שנתי</span><span data-en>Audit and annual tax preparation</span></li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="8" width="20" height="28" rx="2"/>
+          <path d="M11 18h10M11 24h10M11 30h6"/>
+          <path d="M28 24l9-7 9 7v15H28z"/>
+          <path d="M33 39v-7h8v7"/>
+        </svg>
+      </div>
+      <div class="service-tag" data-he>עצמאים</div>
+      <div class="service-tag" data-en>Self-Employed</div>
+      <div class="service-title" data-he>עוסק מורשה</div>
+      <div class="service-title" data-en>Osek Murshe</div>
+      <ul class="service-list">
+        <li><span data-he>רישום העסק</span><span data-en>Business registration</span></li>
+        <li><span data-he>פגישת הקמה ללא עלות נוספת</span><span data-en>Initial setup meeting at no extra cost</span></li>
+        <li><span data-he>התחלת חשבוניות תקינות</span><span data-en>Initiating correct invoicing</span></li>
+        <li><span data-he>הנהלת חשבונות</span><span data-en>Bookkeeping</span></li>
+        <li><span data-he>דיווחי מס דו־חודשיים</span><span data-en>Bi-monthly tax reporting</span></li>
+        <li><span data-he>דיווחים שנתיים</span><span data-en>Annual submissions</span></li>
+        <li><span data-he>ליווי לאורך השנה</span><span data-en>Guidance throughout the year</span></li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 8h14l8 8v24H14z"/>
+          <path d="M28 8v8h8"/>
+          <circle cx="26" cy="30" r="7"/>
+          <path d="M23.5 30h5"/>
+        </svg>
+      </div>
+      <div class="service-tag" data-he>נדל״ן</div>
+      <div class="service-tag" data-en>Real Estate</div>
+      <div class="service-title" data-he>הכנסות משכירות</div>
+      <div class="service-title" data-en>Rental Income</div>
+      <p class="service-desc" data-he>שירות מקצועי, יעיל ומהיר. צוות רואי החשבון שלנו בישראל מייעל את דיווח הכנסות השכירות ואת אופטימיזציית המס — תוך שמירה על ציות מלא והקטנת חבות המס. נשמח לדבר על תיק הנכסים שלכם.</p>
+      <p class="service-desc" data-en>Professional service, efficient and fast processing. Our team of accountants in Israel streamlines rental income reporting and tax optimization, ensuring compliance whilst minimizing your tax bill. Let’s discuss your property portfolio.</p>
     </div>
   </div>
 </section>
@@ -391,7 +553,7 @@
       <div class="olim-eyebrow" data-he>בשיתוף OlimTax</div>
       <div class="olim-eyebrow" data-en>In Partnership with OlimTax</div>
       <div class="olim-title heb" data-he>החזרי מס לעולים חדשים</div>
-      <div class="olim-title heb" data-en>Tax Refunds for New Olim</div>
+      <div class="olim-title heb" data-en>Tax Refunds for Olim</div>
       <p class="olim-desc" data-he>אנחנו המשרד המטפל בהגשות עבור עולים חדשים המגיעים דרך OlimTax — בדיקת זכאות, איתור החזר, והגשה מלאה לרשות המסים.</p>
       <p class="olim-desc" data-en>We're the firm behind every filing for new immigrants referred through OlimTax — eligibility checks, refund identification, and full submission to the Israeli Tax Authority.</p>
     </div>
@@ -413,7 +575,7 @@
   </div>
   <div class="contact-grid">
     <div>
-      <div class="contact-row"><span data-he>כתובת</span><span data-en>Address</span><span>[רחוב, מס׳], רמת גן</span></div>
+      <div class="contact-row"><span data-he>כתובת</span><span data-en>Address</span><span><span data-he>אבא הלל 7, רמת גן</span><span data-en>Abba Hillel 7, Ramat Gan</span></span></div>
       <div class="contact-row"><span data-he>טלפון</span><span data-en>Phone</span><a href="tel:+972000000000">[0X-XXXXXXX]</a></div>
       <div class="contact-row"><span data-he>אימייל</span><span data-en>Email</span><a href="mailto:info@marcdouieb.co.il">[info@marcdouieb.co.il]</a></div>
       <div class="contact-row"><span data-he>שעות פעילות</span><span data-en>Hours</span><span>[א׳–ה׳, 9:00–17:00]</span></div>
