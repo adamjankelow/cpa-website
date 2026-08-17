@@ -2,8 +2,25 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<script>
+  (function(){
+    try{
+      if(localStorage.getItem('md_lang') === 'en'){
+        document.documentElement.setAttribute('dir','ltr');
+        document.documentElement.setAttribute('lang','en');
+      }
+    }catch(e){}
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מארק דויב ושות׳ | רואי חשבון</title>
+<meta name="description" content="מארק דויב ושות׳ — משרד רואי חשבון ברמת גן. הנהלת חשבונות, מיסוי עסקי, עוסק מורשה ופטור, וטיפול בהחזרי מס לעולים חדשים.">
+<meta property="og:title" content="מארק דויב ושות׳ | רואי חשבון">
+<meta property="og:description" content="רואי חשבון מוסמכים ברמת גן — הנהלת חשבונות, מיסוי עסקי וליווי עולים חדשים.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2314213D'/%3E%3Ctext x='32' y='34' font-family='Georgia,serif' font-size='24' font-weight='700' fill='%23C7A250' text-anchor='middle' dominant-baseline='middle'%3EMD%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,6 +40,7 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
+    overflow-x:hidden;
     background:var(--paper);
     color:var(--ink);
     font-family:'Assistant',sans-serif;
@@ -56,6 +74,17 @@
   .topbar{
     max-width:1160px; margin:0 auto; padding:18px 28px;
     display:flex; align-items:center; justify-content:space-between;
+    position:relative;
+  }
+  .skip-link{
+    position:absolute; width:1px; height:1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; z-index:100;
+    background:var(--ink); color:var(--paper); padding:12px 20px;
+    text-decoration:none; font-size:14px;
+  }
+  .skip-link:focus{
+    width:auto; height:auto; overflow:visible; clip:auto;
+    inset-inline-start:12px; top:12px;
   }
   .brandmark{ display:flex; align-items:center; gap:12px; }
   .seal{
@@ -82,7 +111,29 @@
   }
   .lang-toggle:hover{ background:var(--ink); color:var(--paper); }
   .navlinks{ display:flex; gap:26px; }
-  @media (max-width:760px){ .navlinks{ display:none; } }
+  .menu-toggle{
+    display:none; width:40px; height:40px; flex-shrink:0;
+    border:1px solid var(--ink); border-radius:6px; background:transparent;
+    cursor:pointer; align-items:center; justify-content:center;
+  }
+  .menu-toggle-bar{ position:relative; width:18px; height:2px; background:var(--ink); }
+  .menu-toggle-bar::before, .menu-toggle-bar::after{
+    content:""; position:absolute; left:0; width:18px; height:2px; background:var(--ink);
+  }
+  .menu-toggle-bar::before{ top:-6px; }
+  .menu-toggle-bar::after{ top:6px; }
+  @media (max-width:760px){
+    .navlinks{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0; background:var(--paper);
+      border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+      box-shadow:0 12px 24px rgba(20,33,61,0.1);
+    }
+    .navlinks.open{ display:flex; }
+    .navlinks a{ padding:16px 28px; border-bottom:1px solid var(--line); opacity:1; }
+    .navlinks a:last-child{ border-bottom:none; }
+    .menu-toggle{ display:inline-flex; }
+  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -175,17 +226,20 @@
   @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
   .contact-row{ display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--line); font-size:15px; }
   .contact-row span:first-child{ color:var(--slate); }
-  .contact-row span:last-child{ font-weight:600; }
+  .contact-row > *:last-child{ font-weight:600; text-decoration:none; }
+  .contact-row a:last-child:hover{ text-decoration:underline; }
 
   footer{ border-top:1px solid var(--line); padding:32px 28px; text-align:center; font-size:13px; color:var(--slate); }
 
   [data-en]{ display:none; }
   html[dir="ltr"] [data-he]{ display:none; }
-  html[dir="ltr"] [data-en]{ display:initial; }
-  html[dir="ltr"] span[data-en], html[dir="ltr"] div[data-en]{ display:block; }
+  html[dir="ltr"] [data-en]{ display:revert; }
 </style>
 </head>
 <body>
+
+<a href="#main" class="skip-link" data-he>דלג לתוכן</a>
+<a href="#main" class="skip-link" data-en>Skip to content</a>
 
 <header>
   <div class="topbar">
@@ -199,7 +253,7 @@
       </div>
     </div>
     <nav>
-      <div class="navlinks">
+      <div class="navlinks" id="navLinks">
         <a href="#services" data-he>שירותים</a>
         <a href="#services" data-en>Services</a>
         <a href="#team" data-he>הצוות</a>
@@ -209,6 +263,9 @@
         <a href="#contact" data-he>יצירת קשר</a>
         <a href="#contact" data-en>Contact</a>
       </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="menu-toggle-bar"></span>
+      </button>
       <button class="lang-toggle" onclick="toggleLang()">
         <span data-he>English</span>
         <span data-en>עברית</span>
@@ -216,6 +273,8 @@
     </nav>
   </div>
 </header>
+
+<main id="main">
 
 <div class="hero ledger-bg">
   <div>
@@ -332,7 +391,7 @@
       <p class="olim-desc" data-he>אנחנו המשרד המטפל בהגשות עבור עולים חדשים המגיעים דרך OlimTax — בדיקת זכאות, איתור החזר, והגשה מלאה לרשות המסים.</p>
       <p class="olim-desc" data-en>We're the firm behind every filing for new immigrants referred through OlimTax — eligibility checks, refund identification, and full submission to the Israeli Tax Authority.</p>
     </div>
-    <a href="https://olimtax.com" target="_blank" class="btn btn-light">
+    <a href="https://olimtax.com" target="_blank" rel="noopener noreferrer" class="btn btn-light">
       <span data-he>לאתר OlimTax</span>
       <span data-en>Visit OlimTax</span>
     </a>
@@ -351,18 +410,20 @@
   <div class="contact-grid">
     <div>
       <div class="contact-row"><span data-he>כתובת</span><span data-en>Address</span><span>[רחוב, מס׳], רמת גן</span></div>
-      <div class="contact-row"><span data-he>טלפון</span><span data-en>Phone</span><span>[0X-XXXXXXX]</span></div>
-      <div class="contact-row"><span data-he>אימייל</span><span data-en>Email</span><span>[info@marcdouieb.co.il]</span></div>
+      <div class="contact-row"><span data-he>טלפון</span><span data-en>Phone</span><a href="tel:+972000000000">[0X-XXXXXXX]</a></div>
+      <div class="contact-row"><span data-he>אימייל</span><span data-en>Email</span><a href="mailto:info@marcdouieb.co.il">[info@marcdouieb.co.il]</a></div>
       <div class="contact-row"><span data-he>שעות פעילות</span><span data-en>Hours</span><span>[א׳–ה׳, 9:00–17:00]</span></div>
     </div>
     <div>
-      <a href="#" class="btn btn-primary" style="width:100%; text-align:center;">
+      <a href="mailto:info@marcdouieb.co.il?subject=%D7%91%D7%A7%D7%A9%D7%AA%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" class="btn btn-primary" style="display:block; width:100%; text-align:center;">
         <span data-he>תיאום פגישה</span>
         <span data-en>Schedule a Meeting</span>
       </a>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <span data-he>© [שנה] מארק דויב ושות׳, רואי חשבון. כל הזכויות שמורות.</span>
@@ -372,14 +433,29 @@
 <script>
   function toggleLang(){
     const html = document.documentElement;
-    if(html.getAttribute('dir') === 'rtl'){
+    const goingToEnglish = html.getAttribute('dir') === 'rtl';
+    if(goingToEnglish){
       html.setAttribute('dir','ltr');
       html.setAttribute('lang','en');
     } else {
       html.setAttribute('dir','rtl');
       html.setAttribute('lang','he');
     }
+    try{ localStorage.setItem('md_lang', goingToEnglish ? 'en' : 'he'); }catch(e){}
   }
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
 
 </body>
