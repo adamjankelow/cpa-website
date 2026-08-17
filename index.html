@@ -228,6 +228,10 @@
   .contact-row span:first-child{ color:var(--slate); }
   .contact-row > *:last-child{ font-weight:600; text-decoration:none; }
   .contact-row a:last-child:hover{ text-decoration:underline; }
+  .contact-cta a[data-he],
+  html[dir="ltr"] .contact-cta a[data-en]{
+    display:block; width:100%; text-align:center;
+  }
 
   footer{ border-top:1px solid var(--line); padding:32px 28px; text-align:center; font-size:13px; color:var(--slate); }
 
@@ -280,13 +284,13 @@
   <div>
     <div class="eyebrow" data-he>רואי חשבון מוסמכים · מאז — [שנת ייסוד]</div>
     <div class="eyebrow" data-en>Certified Public Accountants · Est. [Founding Year]</div>
-    <h1 class="display heb" data-he>דיוק בכל שורה במאזן.</h1>
-    <h1 class="display heb" data-en>Precision in every line of the ledger.</h1>
+    <h1 class="display heb" data-he>רואי חשבון לעסקים, עצמאים ומשפחות ברמת גן.</h1>
+    <h1 class="display heb" data-en>Accountants for businesses, the self-employed, and families in Ramat Gan.</h1>
     <p class="hero-lede" data-he>משרד מארק דויב ושות׳ מלווה עסקים, עצמאים ומשפחות ברמת גן ובמרכז הארץ בכל הנוגע למיסוי, דיווחים והתנהלות מול רשויות המס — בליווי אישי ובאמינות מלאה.</p>
     <p class="hero-lede" data-en>Marc Douieb &amp; Co. advises businesses, self-employed professionals, and families across Ramat Gan and central Israel on tax, reporting, and dealings with the Tax Authority — with personal attention and full transparency.</p>
     <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary" data-he>קביעת פגישה</a>
-      <a href="#contact" class="btn btn-primary" data-en>Book a Consultation</a>
+      <a href="mailto:info@marcdouieb.co.il?subject=%D7%91%D7%A7%D7%A9%D7%AA%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" class="btn btn-primary" data-he>קביעת פגישה</a>
+      <a href="mailto:info@marcdouieb.co.il?subject=Meeting%20request" class="btn btn-primary" data-en>Book a Consultation</a>
       <a href="#services" class="btn btn-ghost" data-he>השירותים שלנו</a>
       <a href="#services" class="btn btn-ghost" data-en>Our Services</a>
     </div>
@@ -355,10 +359,10 @@
     <div class="team-card">
       <div class="avatar">MD</div>
       <div>
-        <div class="team-name" data-he>מארק דויב</div>
-        <div class="team-name" data-en>Marc Douieb</div>
-        <div class="team-role" data-he>רואה חשבון מוסמך, בעלים</div>
-        <div class="team-role" data-en>CPA, Founding Partner</div>
+        <div class="team-name" data-he>מתן דויב</div>
+        <div class="team-name" data-en>Matan Douieb</div>
+        <div class="team-role" data-he>ראש המשרד</div>
+        <div class="team-role" data-en>Head of Firm</div>
         <p class="team-bio" data-he>[ביוגרפיה קצרה — שנות ניסיון, התמחות, רקע מקצועי]</p>
         <p class="team-bio" data-en>[Short bio — years of experience, specialty, professional background]</p>
         <div class="placeholder-note" data-he>* תמונה ופרטים יתעדכנו</div>
@@ -366,16 +370,16 @@
       </div>
     </div>
     <div class="team-card">
-      <div class="avatar">?</div>
+      <div class="avatar">MD</div>
       <div>
-        <div class="team-name" data-he>[שם השותף/ה]</div>
-        <div class="team-name" data-en>[Partner Name]</div>
+        <div class="team-name" data-he>מארק דויב</div>
+        <div class="team-name" data-en>Marc Douieb</div>
         <div class="team-role" data-he>רואה חשבון מוסמך</div>
-        <div class="team-role" data-en>CPA</div>
-        <p class="team-bio" data-he>[ביוגרפיה קצרה]</p>
-        <p class="team-bio" data-en>[Short bio]</p>
-        <div class="placeholder-note" data-he>* פרופיל נוסף לפי הצורך</div>
-        <div class="placeholder-note" data-en>* Additional profile as needed</div>
+        <div class="team-role" data-en>Certified Public Accountant</div>
+        <p class="team-bio" data-he>[ביוגרפיה קצרה — שנות ניסיון, התמחות, רקע מקצועי]</p>
+        <p class="team-bio" data-en>[Short bio — years of experience, specialty, professional background]</p>
+        <div class="placeholder-note" data-he>* תמונה ופרטים יתעדכנו</div>
+        <div class="placeholder-note" data-en>* Photo and details pending</div>
       </div>
     </div>
   </div>
@@ -415,10 +419,10 @@
       <div class="contact-row"><span data-he>שעות פעילות</span><span data-en>Hours</span><span>[א׳–ה׳, 9:00–17:00]</span></div>
     </div>
     <div>
-      <a href="mailto:info@marcdouieb.co.il?subject=%D7%91%D7%A7%D7%A9%D7%AA%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" class="btn btn-primary" style="display:block; width:100%; text-align:center;">
-        <span data-he>תיאום פגישה</span>
-        <span data-en>Schedule a Meeting</span>
-      </a>
+      <div class="contact-cta">
+        <a href="mailto:info@marcdouieb.co.il?subject=%D7%91%D7%A7%D7%A9%D7%AA%20%D7%A4%D7%92%D7%99%D7%A9%D7%94" class="btn btn-primary" data-he>תיאום פגישה</a>
+        <a href="mailto:info@marcdouieb.co.il?subject=Meeting%20request" class="btn btn-primary" data-en>Schedule a Meeting</a>
+      </div>
     </div>
   </div>
 </section>
