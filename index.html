@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מארק דויב ושות׳ | רואי חשבון</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --green:#2F4B3C;
+    --paper:#F6F3EC;
+    --paper-2:#EFEAE0;
+    --brass:#A9822F;
+    --brass-light:#C7A250;
+    --slate:#5B6472;
+    --line: rgba(20,33,61,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Assistant',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  html[dir="ltr"] body{ font-family:'Inter','Source Serif 4',serif; }
+
+  .heb{ font-family:'Frank Ruhl Libre', serif; }
+  html[dir="ltr"] .heb{ font-family:'Source Serif 4', serif; }
+
+  a{ color:inherit; }
+
+  /* ---------- ledger texture ---------- */
+  .ledger-bg{
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 43px,
+      var(--line) 43px,
+      var(--line) 44px
+    );
+  }
+
+  /* ---------- top bar ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar{
+    max-width:1160px; margin:0 auto; padding:18px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brandmark{ display:flex; align-items:center; gap:12px; }
+  .seal{
+    width:38px; height:38px; border-radius:50%;
+    border:1.5px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:14px;
+    color:var(--brass); flex-shrink:0;
+  }
+  .brand-name{ font-size:17px; letter-spacing:0.3px; font-weight:700; }
+  .brand-sub{ font-size:11.5px; color:var(--slate); letter-spacing:0.5px; }
+
+  nav{ display:flex; align-items:center; gap:28px; }
+  nav a{
+    text-decoration:none; font-size:14.5px; color:var(--ink);
+    opacity:0.78; transition:opacity .15s;
+  }
+  nav a:hover{ opacity:1; }
+  .lang-toggle{
+    border:1px solid var(--ink); background:transparent;
+    color:var(--ink); font-size:13px; padding:7px 14px;
+    border-radius:100px; cursor:pointer; font-family:inherit;
+    transition: background .15s, color .15s;
+  }
+  .lang-toggle:hover{ background:var(--ink); color:var(--paper); }
+  .navlinks{ display:flex; gap:26px; }
+  @media (max-width:760px){ .navlinks{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:1160px; margin:0 auto; padding:88px 28px 96px;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:end;
+  }
+  @media (max-width:860px){ .hero{ grid-template-columns:1fr; padding:56px 22px 64px; } }
+
+  .eyebrow{
+    font-size:12.5px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--brass); margin-bottom:22px; font-weight:600;
+  }
+  h1.display{
+    font-size:clamp(38px,5.4vw,64px); line-height:1.08; font-weight:700;
+    margin:0 0 26px; color:var(--ink);
+  }
+  .hero-lede{
+    font-size:18px; line-height:1.65; color:var(--slate); max-width:46ch; margin:0 0 34px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:14px 28px; border-radius:2px;
+    font-size:15px; font-weight:600; text-decoration:none;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 8px 20px rgba(20,33,61,0.22); }
+  .btn-ghost{ border:1px solid var(--ink); color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  .hero-panel{
+    border:1px solid var(--line); background:var(--paper-2);
+    padding:30px; position:relative;
+  }
+  .hero-panel::before{
+    content:""; position:absolute; inset:8px;
+    border:1px solid var(--line); pointer-events:none;
+  }
+  .hero-panel-label{ font-size:11.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--slate); margin-bottom:16px; }
+  .hero-stat{ display:flex; justify-content:space-between; padding:13px 0; border-bottom:1px solid var(--line); font-size:14.5px; }
+  .hero-stat:last-child{ border-bottom:none; }
+  .hero-stat b{ font-weight:700; }
+
+  /* ---------- section shell ---------- */
+  section{ max-width:1160px; margin:0 auto; padding:80px 28px; border-top:1px solid var(--line); }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:48px; flex-wrap:wrap; }
+  .section-num{ font-family:'Frank Ruhl Libre',serif; color:var(--brass); font-size:14px; letter-spacing:1px; }
+  h2.display{ font-size:clamp(26px,3.2vw,38px); font-weight:700; margin:6px 0 0; }
+  .section-desc{ max-width:52ch; color:var(--slate); font-size:15.5px; line-height:1.6; }
+
+  /* ---------- services ---------- */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:760px){ .services-grid{ grid-template-columns:1fr; } }
+  .service-card{ background:var(--paper); padding:32px 28px; }
+  .service-tag{ font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--brass); margin-bottom:14px; font-weight:600; }
+  .service-title{ font-family:'Frank Ruhl Libre',serif; font-size:21px; font-weight:700; margin-bottom:12px; }
+  html[dir="ltr"] .service-title{ font-family:'Source Serif 4',serif; }
+  .service-desc{ font-size:14.5px; line-height:1.65; color:var(--slate); }
+
+  /* ---------- team ---------- */
+  .team-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:36px; }
+  @media (max-width:760px){ .team-grid{ grid-template-columns:1fr; } }
+  .team-card{ display:flex; gap:20px; border:1px solid var(--line); padding:26px; background:var(--paper-2); }
+  .avatar{
+    width:84px; height:84px; flex-shrink:0; border-radius:2px;
+    background: linear-gradient(150deg, var(--ink), var(--green));
+    display:flex; align-items:center; justify-content:center;
+    color:var(--paper); font-family:'Frank Ruhl Libre',serif; font-size:26px; font-weight:700;
+  }
+  .team-name{ font-weight:700; font-size:17px; margin-bottom:3px; }
+  .team-role{ font-size:13px; color:var(--brass); font-weight:600; margin-bottom:10px; }
+  .team-bio{ font-size:14px; line-height:1.6; color:var(--slate); }
+  .placeholder-note{ font-size:12px; color:var(--slate); opacity:0.7; margin-top:10px; font-style:italic; }
+
+  /* ---------- olim strip ---------- */
+  .olim-strip{
+    background:var(--ink); color:var(--paper); border-top:1px solid var(--line);
+  }
+  .olim-inner{ max-width:1160px; margin:0 auto; padding:72px 28px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
+  @media (max-width:760px){ .olim-inner{ grid-template-columns:1fr; } }
+  .olim-eyebrow{ font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color:var(--brass-light); margin-bottom:16px; font-weight:600; }
+  .olim-title{ font-family:'Frank Ruhl Libre',serif; font-size:clamp(24px,3vw,32px); font-weight:700; margin:0 0 14px; }
+  html[dir="ltr"] .olim-title{ font-family:'Source Serif 4',serif; }
+  .olim-desc{ font-size:15px; line-height:1.65; opacity:0.82; max-width:52ch; }
+  .btn-light{ background:var(--paper); color:var(--ink); white-space:nowrap; }
+  .btn-light:hover{ background:var(--brass-light); }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-row{ display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--line); font-size:15px; }
+  .contact-row span:first-child{ color:var(--slate); }
+  .contact-row span:last-child{ font-weight:600; }
+
+  footer{ border-top:1px solid var(--line); padding:32px 28px; text-align:center; font-size:13px; color:var(--slate); }
+
+  [data-en]{ display:none; }
+  html[dir="ltr"] [data-he]{ display:none; }
+  html[dir="ltr"] [data-en]{ display:initial; }
+  html[dir="ltr"] span[data-en], html[dir="ltr"] div[data-en]{ display:block; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brandmark">
+      <div class="seal">MD</div>
+      <div>
+        <div class="brand-name" data-he>מארק דויב ושות׳</div>
+        <div class="brand-name" data-en>Marc Douieb &amp; Co.</div>
+        <div class="brand-sub" data-he>רואי חשבון · רמת גן</div>
+        <div class="brand-sub" data-en>Certified Public Accountants · Ramat Gan</div>
+      </div>
+    </div>
+    <nav>
+      <div class="navlinks">
+        <a href="#services" data-he>שירותים</a>
+        <a href="#services" data-en>Services</a>
+        <a href="#team" data-he>הצוות</a>
+        <a href="#team" data-en>Team</a>
+        <a href="#olim" data-he>עולים</a>
+        <a href="#olim" data-en>New Olim</a>
+        <a href="#contact" data-he>יצירת קשר</a>
+        <a href="#contact" data-en>Contact</a>
+      </div>
+      <button class="lang-toggle" onclick="toggleLang()">
+        <span data-he>English</span>
+        <span data-en>עברית</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero ledger-bg">
+  <div>
+    <div class="eyebrow" data-he>רואי חשבון מוסמכים · מאז — [שנת ייסוד]</div>
+    <div class="eyebrow" data-en>Certified Public Accountants · Est. [Founding Year]</div>
+    <h1 class="display heb" data-he>דיוק בכל שורה במאזן.</h1>
+    <h1 class="display heb" data-en>Precision in every line of the ledger.</h1>
+    <p class="hero-lede" data-he>משרד מארק דויב ושות׳ מלווה עסקים, עצמאים ומשפחות ברמת גן ובמרכז הארץ בכל הנוגע למיסוי, דיווחים והתנהלות מול רשויות המס — בליווי אישי ובאמינות מלאה.</p>
+    <p class="hero-lede" data-en>Marc Douieb &amp; Co. advises businesses, self-employed professionals, and families across Ramat Gan and central Israel on tax, reporting, and dealings with the Tax Authority — with personal attention and full transparency.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary" data-he>קביעת פגישה</a>
+      <a href="#contact" class="btn btn-primary" data-en>Book a Consultation</a>
+      <a href="#services" class="btn btn-ghost" data-he>השירותים שלנו</a>
+      <a href="#services" class="btn btn-ghost" data-en>Our Services</a>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="hero-panel-label" data-he>המשרד במספרים</div>
+    <div class="hero-panel-label" data-en>The Firm at a Glance</div>
+    <div class="hero-stat"><span data-he>שנות ניסיון</span><span data-en>Years in practice</span><b>[XX]</b></div>
+    <div class="hero-stat"><span data-he>לקוחות עסקיים ופרטיים</span><span data-en>Business &amp; private clients</span><b>[XXX]+</b></div>
+    <div class="hero-stat"><span data-he>מיקום</span><span data-en>Location</span><b><span data-he>רמת גן</span><span data-en>Ramat Gan</span></b></div>
+    <div class="hero-stat"><span data-he>רישיון רו״ח</span><span data-en>CPA license</span><b>[מס׳ רישיון]</b></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="section-head">
+    <div>
+      <div class="section-num" data-he>שירותים</div>
+      <div class="section-num" data-en>Services</div>
+      <h2 class="display heb" data-he>ליווי מלא לכל סוגי העסק</h2>
+      <h2 class="display heb" data-en>Full-service support for every business type</h2>
+    </div>
+    <p class="section-desc" data-he>מהקמת התיק במע״מ ועד דוח שנתי — אנחנו שם בכל שלב.</p>
+    <p class="section-desc" data-en>From opening your file with the Tax Authority to your annual return — we're with you at every stage.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-tag" data-he>חברות ועסקים</div>
+      <div class="service-tag" data-en>Companies &amp; Businesses</div>
+      <div class="service-title" data-he>הנהלת חשבונות ומיסוי עסקי</div>
+      <div class="service-title" data-en>Bookkeeping &amp; Business Tax</div>
+      <p class="service-desc" data-he>דוחות שנתיים, ניהול ספרים, מע״מ ומס הכנסה לחברות בע״מ ושותפויות. [טקסט מלא יתקבל מהמשרד]</p>
+      <p class="service-desc" data-en>Annual reports, bookkeeping, VAT and income tax for limited companies and partnerships. [Full copy to be supplied by the firm]</p>
+    </div>
+    <div class="service-card">
+      <div class="service-tag" data-he>עצמאים</div>
+      <div class="service-tag" data-en>Self-Employed</div>
+      <div class="service-title" data-he>עוסק מורשה</div>
+      <div class="service-title" data-en>Osek Murshe</div>
+      <p class="service-desc" data-he>פתיחת תיק, דיווחי מע״מ תקופתיים ודוח שנתי לעצמאים בעלי מחזור מעל הסף. [טקסט מלא יתקבל מהמשרד]</p>
+      <p class="service-desc" data-en>File setup, periodic VAT reporting, and annual filing for self-employed professionals above the turnover threshold. [Full copy to be supplied by the firm]</p>
+    </div>
+    <div class="service-card">
+      <div class="service-tag" data-he>עסקים קטנים</div>
+      <div class="service-tag" data-en>Small Business</div>
+      <div class="service-title" data-he>עוסק פטור</div>
+      <div class="service-title" data-en>Osek Patur</div>
+      <p class="service-desc" data-he>ליווי בפתיחת תיק עוסק פטור והדרכה בהתנהלות השוטפת מול רשויות המס. [טקסט מלא יתקבל מהמשרד]</p>
+      <p class="service-desc" data-en>Support opening an exempt-dealer file and guidance on ongoing dealings with the Tax Authority. [Full copy to be supplied by the firm]</p>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="section-head">
+    <div>
+      <div class="section-num" data-he>הצוות</div>
+      <div class="section-num" data-en>Team</div>
+      <h2 class="display heb" data-he>מי בטיפול בתיק שלכם</h2>
+      <h2 class="display heb" data-en>Who's handling your file</h2>
+    </div>
+    <p class="section-desc" data-he>צוות רואי חשבון מוסמכים עם ניסיון רב בתחום.</p>
+    <p class="section-desc" data-en>A team of licensed CPAs with deep hands-on experience.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="avatar">MD</div>
+      <div>
+        <div class="team-name" data-he>מארק דויב</div>
+        <div class="team-name" data-en>Marc Douieb</div>
+        <div class="team-role" data-he>רואה חשבון מוסמך, בעלים</div>
+        <div class="team-role" data-en>CPA, Founding Partner</div>
+        <p class="team-bio" data-he>[ביוגרפיה קצרה — שנות ניסיון, התמחות, רקע מקצועי]</p>
+        <p class="team-bio" data-en>[Short bio — years of experience, specialty, professional background]</p>
+        <div class="placeholder-note" data-he>* תמונה ופרטים יתעדכנו</div>
+        <div class="placeholder-note" data-en>* Photo and details pending</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="avatar">?</div>
+      <div>
+        <div class="team-name" data-he>[שם השותף/ה]</div>
+        <div class="team-name" data-en>[Partner Name]</div>
+        <div class="team-role" data-he>רואה חשבון מוסמך</div>
+        <div class="team-role" data-en>CPA</div>
+        <p class="team-bio" data-he>[ביוגרפיה קצרה]</p>
+        <p class="team-bio" data-en>[Short bio]</p>
+        <div class="placeholder-note" data-he>* פרופיל נוסף לפי הצורך</div>
+        <div class="placeholder-note" data-en>* Additional profile as needed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="olim" class="olim-strip">
+  <div class="olim-inner">
+    <div>
+      <div class="olim-eyebrow" data-he>בשיתוף OlimTax</div>
+      <div class="olim-eyebrow" data-en>In Partnership with OlimTax</div>
+      <div class="olim-title heb" data-he>החזרי מס לעולים חדשים</div>
+      <div class="olim-title heb" data-en>Tax Refunds for New Olim</div>
+      <p class="olim-desc" data-he>אנחנו המשרד המטפל בהגשות עבור עולים חדשים המגיעים דרך OlimTax — בדיקת זכאות, איתור החזר, והגשה מלאה לרשות המסים.</p>
+      <p class="olim-desc" data-en>We're the firm behind every filing for new immigrants referred through OlimTax — eligibility checks, refund identification, and full submission to the Israeli Tax Authority.</p>
+    </div>
+    <a href="https://olimtax.com" target="_blank" class="btn btn-light">
+      <span data-he>לאתר OlimTax</span>
+      <span data-en>Visit OlimTax</span>
+    </a>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="section-head">
+    <div>
+      <div class="section-num" data-he>יצירת קשר</div>
+      <div class="section-num" data-en>Contact</div>
+      <h2 class="display heb" data-he>נשמח לשמוע מכם</h2>
+      <h2 class="display heb" data-en>We'd love to hear from you</h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-row"><span data-he>כתובת</span><span data-en>Address</span><span>[רחוב, מס׳], רמת גן</span></div>
+      <div class="contact-row"><span data-he>טלפון</span><span data-en>Phone</span><span>[0X-XXXXXXX]</span></div>
+      <div class="contact-row"><span data-he>אימייל</span><span data-en>Email</span><span>[info@marcdouieb.co.il]</span></div>
+      <div class="contact-row"><span data-he>שעות פעילות</span><span data-en>Hours</span><span>[א׳–ה׳, 9:00–17:00]</span></div>
+    </div>
+    <div>
+      <a href="#" class="btn btn-primary" style="width:100%; text-align:center;">
+        <span data-he>תיאום פגישה</span>
+        <span data-en>Schedule a Meeting</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span data-he>© [שנה] מארק דויב ושות׳, רואי חשבון. כל הזכויות שמורות.</span>
+  <span data-en>© [Year] Marc Douieb &amp; Co., Certified Public Accountants. All rights reserved.</span>
+</footer>
+
+<script>
+  function toggleLang(){
+    const html = document.documentElement;
+    if(html.getAttribute('dir') === 'rtl'){
+      html.setAttribute('dir','ltr');
+      html.setAttribute('lang','en');
+    } else {
+      html.setAttribute('dir','rtl');
+      html.setAttribute('lang','he');
+    }
+  }
+</script>
+
+</body>
+</html>
